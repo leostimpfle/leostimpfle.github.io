@@ -2,10 +2,10 @@
 layout: post
 title:  "Non-separating commas in comma separated values"
 date:   2024-02-03 16:24:48 +0100
-categories: python pandas regex
+categories: python
 ---
 	
-Ill-formatted csv files are not uncommon.  This post explores how to deal with it in [`python`](https://www.python.org) using [`pandas`](https://pandas.pydata.org) and regular expressions.
+Ill-formatted csv files are not uncommon.  This post explores how to deal with a particular problem in [`python`](https://www.python.org) using [`pandas`](https://pandas.pydata.org) and regular expressions.
 	
 # The Problem
 I recently encountered files that contained enumerations or even full sentences which, unsurprisingly, contained multiple commas.  The files' creators seemed to have thought of enclosing those fields with double quotes to make clear that the comma is not a separator.  They have not, however, thought of the possibility that the enumerations themselves can contain double quotes resulting in a malformed csv file of the form
