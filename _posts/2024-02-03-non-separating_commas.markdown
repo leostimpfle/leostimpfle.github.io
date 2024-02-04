@@ -25,7 +25,7 @@ pd.read_csv(io.StringIO(sample))  # this throws ParserError: Error tokenizing da
 {% endhighlight %}
 	
 ## The Solution
-To the human eye it is clear that the sample contains three columns and that the second field in the third row contains nested doublequotes rather than three separate fields. The objective is to replace the inner double quotes to enable the parser to identify the string within the outer double quotes as a single field.  This is achieved with a regular expression and a dynamic replacement of the string matched by the expression.  Keep on reading for an explanation of the solution.
+To the human eye it is clear that the sample contains three columns and that the second field in the third row contains nested double quotes rather than three separate fields. The objective is to replace the inner double quotes to enable the parser to identify the string within the outer double quotes as a single field.  This is achieved with a regular expression and a dynamic replacement of the string matched by the expression.  Keep on reading for an explanation of the solution.
 
 {% highlight ruby %}
 import re
@@ -61,7 +61,7 @@ Let's start with identifying the fields enclosed by double (and checking for com
 pattern = '(?:^|,)".*"(?:,|$)'
 {% endhighlight %}
 
-Applying the `pattern` to our `sample`, shows that it captures the relevant substrings:
+Applying the `pattern` to our `sample`, shows that it captures the relevant sub-strings:
 
 {% highlight ruby %}
 import re
@@ -96,7 +96,7 @@ Once we have identified the problematic string, we still have to sanitise it to 
 
 Let's first look at what the function has to do. It takes a single argument `m` which is a `re.Match` object obtained from matching `pattern` in `sample`.  The captured groups in the `re.Match` object can be accessed via `re.Match.groups`, so we can select the groups that we want to change (the inner double quotes) and the ones we want to keep (everything else).
 
-By default, match groups can be acessed by their integer indices.  But to improve readability, let's update `pattern` with *named capturing groups* using the syntax `(?P<name>...)`.  The matched groups can then be accessed by their name `re.Match.group('<name>')`.
+By default, match groups can be accessed by their integer indices.  But to improve readability, let's update `pattern` with *named capturing groups* using the syntax `(?P<name>...)`.  The matched groups can then be accessed by their name `re.Match.group('<name>')`.
 
 {%highlight ruby %}
 pattern = r'(?P<keep1>^|,"[^"]*)(?P<innerQuote1>")(?!,)(?P<keep2>[^"]+)(?P<innerQuote2>")(?P<keep3>[^"]*",|$)'
@@ -124,5 +124,5 @@ print(re.sub(pattern, repl, sample))  # 'column1, column2, column3\n1,"text with
 
 
 # Footnotes
-[^2]: [`pandas.read_csv`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html) provides an arugment `on_bad_lines` which is set to `error` by default.  To avoid the `ParseError` and discard the ill-formed lines the user can simply set it to `warn` or `skip`.
+[^2]: [`pandas.read_csv`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html) provides an argument `on_bad_lines` which is set to `error` by default.  To avoid the `ParseError` and discard the ill-formed lines the user can simply set it to `warn` or `skip`.
 [^1]: Let's for simplicity assume that there is no third nested level of double quotes.
