@@ -1,12 +1,13 @@
 ---
 layout: post
-title:  "Non-separating commas in comma separated values"
+title:  "Non-Separating Commas in Comma Separated Values"
 date:   2024-02-03 16:24:48 +0100
 categories: python
 ---
 	
-Ill-formatted csv files are not uncommon.  This post explores how to deal with a particular problem in [`python`](https://www.python.org) using [regular expressions](https://docs.python.org/3/howto/regex.html).
-	
+Ill-formatted csv files are no uncommon phenomenon in the wild.  This post explores how to deal with a particular problem in [`python`](https://www.python.org) using [regular expressions](https://docs.python.org/3/howto/regex.html).
+<!--more-->
+
 ## The Problem
 The ill-formatted csv files contained values that represented enumerations or even full sentences which, unsurprisingly, themselves contained multiple commas.  The files' creators seemed to have thought of enclosing those fields with double quotes to make clear that the comma is not a separator.  They have not, however, thought of the possibility that the enumerations themselves can contain double quotes resulting in a malformed csv file of the form
 
@@ -55,7 +56,7 @@ pd.read_csv(io.StringIO(sample_fixed))  # this works as expected
   This is the kind of task that is perfect to be tackled with [*regular expressions*](https://en.wikipedia.org/wiki/Regular_expression). The Python Standard Library comes with the module [`re`](https://docs.python.org/3/library/re.html#module-re) providing regular expression operations. The first step is to define a regular expression that matches the problematic fields.
 
 #### The Outer Double Quotes
-Let's start with identifying the fields enclosed by double (and checking for commas or beginning/end of strings using the *non-capturing groups* `(?:...)`):
+Let's start with identifying the fields enclosed by double quotes (and checking for commas or beginning/end of strings using the *non-capturing groups* `(?:...)`):
 
 {% highlight ruby %}
 pattern = '(?:^|,)".*"(?:,|$)'
