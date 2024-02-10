@@ -256,7 +256,7 @@ class Sample():
 if __name__=='__main__':
     import os
     import plotly.express as px
-    output_path = r'/Users/leonardstimpfle/Documents/code/leostimpfle.github.io/_includes/fixed_effects'
+    output_path = r'/Users/leonardstimpfle/Documents/code/leostimpfle.github.io/_includes/2024-02-10-fixed_effects'
     start_year = 2013
     end_year = 2022
     treatment_year=2017
