@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Visualising Fixed Effects"
-date:   2024-02-04
+date:   2024-02-10
 categories: econometrics
 ---
 [Fixed effect models](https://en.wikipedia.org/wiki/Fixed_effects_model) are a popular tool to deal with unobserved heterogeneity.  This post tries to illustrate how they work in a non-technical way.
