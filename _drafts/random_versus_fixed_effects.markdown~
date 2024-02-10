@@ -1,0 +1,14 @@
+---
+layout: post
+title:  "Random Effects versus Fixed Effects"
+date:   2024-02-03 16:24:48 +0100
+categories: econometrics
+---
+
+## Theoretical Foundation
+The linear two-way fixed effects model is
+
+$$y_{it}=\alpha+\beta x_{it}+\nu_i+\tau_t+\epsilon_{it},$$
+
+where $\nu_i$ are individual-fixed effects and $\tau_i$ are time-fixed effects.
+

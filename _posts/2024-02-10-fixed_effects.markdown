@@ -15,7 +15,7 @@ $$
 y_{it} = \verb|property_dummy|_i*\delta_t^{2017} + \nu_i + \tau_t + \epsilon_{it},\text{ where }\delta^{2017}_i=\begin{cases}1,&\text{if }t\geq 2017,\\0,&\text{otherwise}.\end{cases}
 $$
 
-{% include fixed_effects/sample.html %}
+{% include 2024-02-10-fixed_effects/sample.html %}
 
 For the sake of illustration, let's introduce some unobserved heterogeneity between the individuals receiving treatment and the ones not receiving treatment.  We define the individual fixed effects $\nu_i$ to depend on $\verb\|property_dummy\|_i$ via an ubobserved variable $\verb\|property_alpha\|_i$:
 
@@ -29,11 +29,11 @@ Clearly, the effect of treatment on $y_{it}$ in this model is equal to 1.  Let's
 ### POLS
 POLS estimates the effect of the treatment by the difference in averages of the dependent variable with and without treatment.  Because we assume $\verb|property_alpha|_i$ to be unobservable, our estimate can only rely on the observable difference in $\verb|property_dummy|_i$ alone:
 
-{% include fixed_effects/box1.html %}
+{% include 2024-02-10-fixed_effects/box1.html %}
 
 The difference in means before and after treatment is nowhere near what it should.  Now, we know that the synthetic data is generated from an unobservable $\verb\|property_alpha\|_i$.  Splitting our sample into sub-samples for $\verb\|property_alpha\|_i=A$ and $\verb\|property_alpha\|_i=B$, we see that only the former is affected by treatment (what a nasty surprise!).  Because the mean of the latter is higher than the pre-treatment mean of the former, POLS would likely understimate the treatment effect.  This is why unobserved heterogeneity is bad:
 
-{% include fixed_effects/box2.html %}
+{% include 2024-02-10-fixed_effects/box2.html %}
 
 In the real world where we usually have observational rather than synthetic data, we may not have the luxury of looking under the hood of the data generating process and simply observe $\verb\|property_alpha\|_i$ (it's meant to be unobservable after all).  But under certain conditions there is actually no need to observe this property.  This is where fixed effects come into play.
 
@@ -43,7 +43,7 @@ Fixed effects models are designed to eliminate unobserved heterogeneity which is
 
 Demeaning ensures that terms fixed at the individual or time level $\nu_i$ and $\tau_i$ drop out of of the model.  This can be seen nicely when plotting the synthetic data as above at the different stages of demeaning:
 
-{% include fixed_effects/sample_fe.html %}
+{% include 2024-02-10-fixed_effects/sample_fe.html %}
 
 After eliminating the individual and time fixed effects, there are only two sources of variation remaining: The treatment $\delta_t^{2017}$ and the error term $\epsilon_{it}$.
 

@@ -1,0 +1,57 @@
+---
+layout: post
+title:  "Visualising Fixed Effects"
+date:   2024-02-04
+categories: econometrics
+---
+Fixed effect models are a popular tool to deal with unobserved heterogeneity.  This post tries to provide a simple illustration of what fixed effects do (and what they don't).
+<!--more-->
+
+## Background
+The linear two-way fixed effects model is
+
+$$y_{it}=\alpha+\beta x_{it}+\nu_i+\tau_t+\epsilon_{it},$$
+
+where $\nu_i$ are individual-fixed effects and $\tau_i$ are time-fixed effects. The terminology refers to the heterogeneity being a *fixed* intercept at the level of individuals $\nu_i$ or times $\tau_t$.
+
+The two-way fixed effects estimator is 
+
+$$\hat{\beta} = \arg\min_{\beta}\Bigl[
+	\Bigl(
+	\bigl(
+		y_{it} - \bar{y}_i - \bar{y}_t + \bar{y}
+	\bigr)
+	-\beta\bigl(
+		x_{it} - \bar{x}_i - \bar{x}_t + \bar{x}
+	\bigr)
+	\Bigr)^2
+\Bigr],$$
+
+where
+- $\bar{y}=\frac{1}{NT}\sum_{i=i_1}^{i_N}\sum_{t=t_1}^{t_T}y_{it}$ is the sample mean,
+- $$\bar{y}_t = \frac{1}{N}\sum_{i=i_1}^{i_N}y_{it}$$ is the mean across individuals at time $t$,
+- $$\bar{y}_i=\frac{1}{T}\sum_{t=t_1}^{t_T}y_{it}$$ is the mean for indiviudal $i$ across all times.
+
+### Within and Between Variation
+
+## Illustration
+
+Let's illustrate a simple fixed effects model with synthetic data.  Consider a population of individuals characterised by a dummy variable $\verb\|property_dummy\|$ indicating exposure to a treatment that occurs in $t=2017$.  For each individual $i$, we then create a time series of observations that follows a linear two-way fixed effects model:
+
+$$
+y_{it} = \verb|property_dummy|_i*\delta_t^{2017} + \nu_i + \tau_t + \epsilon_{it},\text{ where }\delta^{2017}_i=\begin{cases}1,&\text{if }t=2017,\\0,&\text{otherwise}.\end{cases}
+$$
+
+{% include fixed_effects/sample.html %}
+
+### POLS
+Applying pooled ordinary least squares (POLS) to this kind of data is bound to fail because of the unobserved individual or time fixed heterogeneity in the data (namely, $\nu_i$ and $\tau_t$).  POLS estimates the effect of the treatment by the difference in averages of the dependent variable with and without treatment:
+
+{% include fixed_effects/box1.html %}
+
+{% include fixed_effects/box2.html %}
+
+### Fixed Effects
+
+{% include fixed_effects/sample_fe.html %}
+
