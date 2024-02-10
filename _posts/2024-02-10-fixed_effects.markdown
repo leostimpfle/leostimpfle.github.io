@@ -51,7 +51,7 @@ Clearly, the treatment increases the dependent variable for  the individuals wit
 
 The reason is that the transformed data is a *relative* measure:  For each observation it is relative to the mean of that observation's individual (individual fixed effects are eliminated) and relative to the mean of that observation's time period (time fixed effects are eliminated).  So if it increases for half the population (blue), it decreases for the other half (red).
 
-Consequently, the treatment effect is given by the difference in means before and after treatment and between individuals with $\verb\|propert_dummy\|_i=1$ and $\verb\|propert_dummy\|_i=0$.[^2]  Eyballing the last graph, the means before and after treatment within both groups change by 0.5 but in opposite directions, so the total treatment effect is 1 as expected.
+Consequently, the treatment effect is given by the difference in means before and after treatment and between individuals with different $\verb\|propert_dummy\|_i$.[^2]  Eyballing the last graph, the means before and after treatment within both groups change by 0.5 but in opposite directions, so the total treatment effect is 1 as expected.
 
 
 
