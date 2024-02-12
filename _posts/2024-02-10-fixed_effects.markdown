@@ -9,7 +9,7 @@ categories: econometrics
 
 ## Illustration
 
-Let's illustrate a fixed effects with some beautifully well-behaved synthetic data.  Consider a population of individuals characterised by a dummy variable $\verb\|property_dummy\|$ indicating exposure to a treatment that occurs in $t=2017$.  For each individual $i$, we have a time series of observations that follows a linear two-way fixed effects model:
+Let's illustrate a fixed effects with some beautifully well-behaved synthetic data.[^3]  Consider a population of individuals characterised by a dummy variable $\verb\|property_dummy\|$ indicating exposure to a treatment that occurs in $t=2017$.  For each individual $i$, we have a time series of observations that follows a linear two-way fixed effects model:
 
 $$
 y_{it} = \verb|property_dummy|_i*\delta_t^{2017} + \nu_i + \tau_t + \epsilon_{it},\text{ where }\delta^{2017}_i=\begin{cases}1,&\text{if }t\geq 2017,\\0,&\text{otherwise}.\end{cases}
@@ -56,5 +56,6 @@ Consequently, the treatment effect is given by the difference in means before an
 
 
 # Footnotes
+[^3]: The code to generate the data and graphs in this post is available [here](https://github.com/leostimpfle/leostimpfle.github.io/blob/main/_code/2024-02-10-fixed_effects.py).
 [^1]: For details see, e.g., [(Imai & Kim, 2021)](https://www.cambridge.org/core/journals/political-analysis/article/abs/on-the-use-of-twoway-fixed-effects-regression-models-for-causal-inference-with-panel-data/F10006D0210407C5F9C7CAC1EEE3EF0D).
-[^2]: In fact, one can show that the two-way fixed effects estimator "is equivalent to the difference-in-differences estimator under the simplest setting with two groups and two time periods". [(Imai & Kim, 2021)](https://www.cambridge.org/core/journals/political-analysis/article/abs/on-the-use-of-twoway-fixed-effects-regression-models-for-causal-inference-with-panel-data/F10006D0210407C5F9C7CAC1EEE3EF0D)
+[^2]: In fact, the two-way fixed effects estimator "is equivalent to the difference-in-differences estimator under the simplest setting with two groups and two time periods". [(Imai & Kim, 2021)](https://www.cambridge.org/core/journals/political-analysis/article/abs/on-the-use-of-twoway-fixed-effects-regression-models-for-causal-inference-with-panel-data/F10006D0210407C5F9C7CAC1EEE3EF0D)
